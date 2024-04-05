@@ -19,4 +19,35 @@ public class Controller03 {
         System.out.println("Controller03.method2");
     }
 
+    // 경로 : /main3/sub3
+    // 파라미터 : ?name
+    // /main3/sub3?name
+    @RequestMapping(value = "sub3", params = "name")
+    public void method3() {
+        System.out.println("Controller03.method3");
+    }
+
+    // 경로 : /main3/sub3?name&age
+    @RequestMapping(value = "sub3", params = {"name", "age"})
+    public void method4() {
+        System.out.println("Controller03.method4");
+    }
+
+    //경로 : /main3/sub3?address&city
+    @RequestMapping(value = "sub3", params = {"address", "city"})
+    public void method5() {
+        System.out.println("Controller03.method5");
+    }
+
+    // 경로 : /main3/sub3?country&city
+    // /main3/sub3?city&country
+    // /main3/sub3?city=seoul&country=korea
+    // /main3/sub3?city=tokyo&country=japan
+    // /main3/sub3?country=uk&city=london
+    @RequestMapping(value = "sub3", params = {"country", "city"})
+    public void method6() {
+        System.out.println("Controller03.method6");
+    }
+
+
 }
