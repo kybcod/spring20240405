@@ -48,5 +48,8 @@ public class Controller01 {
         System.out.println("Controller01.method3");
     }
 
+    //method1() 메서드에서는 WebRequest를 사용하여 요청의 파라미터 값을 얻는다.
+    // 그리고 HttpServletResponse를 사용하여 응답의 컨텐츠 타입을 설정하고
+    // 생성한 HTML을 클라이언트에게 반환
 
 }
