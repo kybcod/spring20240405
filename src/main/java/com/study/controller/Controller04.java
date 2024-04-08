@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 @Controller
 @RequestMapping("main4")
-public class Controller4 {
+public class Controller04 {
 
     // sub1은 파라미터 정의 X : 아무 파라미터를 넣어도 실행이 됨 없어도 실행이 됨
     // /main4/sub1

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("main5")
-public class Controller5 {
+public class Controller05 {
 
     @RequestMapping("sub1")
     // /main5/sub1?city=seoul
