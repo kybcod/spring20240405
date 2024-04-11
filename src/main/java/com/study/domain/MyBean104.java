@@ -2,7 +2,7 @@ package com.study.domain;
 
 import java.util.List;
 
-public class MyBeans104 {
+public class MyBean104 {
 
     private String city;
     private List<String> foods;
