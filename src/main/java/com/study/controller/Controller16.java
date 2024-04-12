@@ -17,20 +17,4 @@ public class Controller16 {
         return "/main16/main/sub2";
     }
 
-    @RequestMapping("sub3")
-    public void sub3(){
-
-    }
-
-    @RequestMapping("sub4")
-    public void sub4(){
-
-    }
-
-    @RequestMapping("sub5")
-    public void sub5(){
-
-    }
-
-
 }
