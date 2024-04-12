@@ -6,6 +6,7 @@
 </head>
 <body>
 <c:set var="current1" value="sub3 value1" scope="page"/>
+
 <%-- view 간 값 전달시 request 영역 attribute를 활용하면 됨--%>
 <c:set var="current2" value="sub3" scope="request"/>
 <c:import url="navbar2.jsp"/>
