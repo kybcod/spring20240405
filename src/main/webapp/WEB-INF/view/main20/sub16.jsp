@@ -8,7 +8,7 @@
 <%--method: 전송 방식 결정, 기본(get)--%>
 <%--get : 주소에 쿼리스트링으로 붙음, 민감한 정보 노출, 길이 제한--%>
 <%--post : 요청 메세지 body(몸체)에 붙음, 민감한 정보 노출X(주소에 노출이 안됨), 길이 제한X --%>
-<form action="/main20/sub17" method="get">
+<form action="/main20/sub17" method="post">
     <div>
         아이디
         <input type="text" name="id">
