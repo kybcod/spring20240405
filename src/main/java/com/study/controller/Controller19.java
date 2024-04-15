@@ -57,16 +57,16 @@ public class Controller19 {
         response.addCookie(cookie);
     }
 
-    @RequestMapping("sub8")
-    public void sub8(HttpServletResponse response){
-        Cookie cookie = new Cookie("cookie-name3", "cookie-value3");
-        cookie.setHttpOnly(true);
-        cookie.setPath("/");
+@RequestMapping("sub8")
+public void sub8(HttpServletResponse response){
+    Cookie cookie = new Cookie("cookie-name3", "cookie-value3");
+    cookie.setHttpOnly(true);
+    cookie.setPath("/");
 
-        //cookie 지속 시간 결정 (초 단위)
-        cookie.setMaxAge(3);
-        response.addCookie(cookie);
-    }
+    //cookie 지속 시간 결정 (초 단위)
+    cookie.setMaxAge(3);
+    response.addCookie(cookie);
+}
 
     @RequestMapping("sub9")
     public void sub9(HttpServletResponse response){
