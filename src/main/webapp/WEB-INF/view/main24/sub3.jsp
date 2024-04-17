@@ -6,7 +6,7 @@
 </head>
 <body>
 <h3>나라 정보(중복없이)</h3>
-<table>
+<table border="2">
     <thead>
         <tr>
             <th>NO</th>
