@@ -26,7 +26,7 @@ SELECT * FROM Customers WHERE CustomerID != 3;
 SELECT * FROM Customers WHERE CustomerName > 'S';
 SELECT * FROM Customers WHERE CustomerName > 's';
 SELECT * FROM Customers WHERE Country = 'Germany';
-SELECT * FROM Customers WHERE Country = 'GERmany';
+SELECT * FROM Customers WHERE Country = "GERmany";
 
 # 날짜 형식
 SELECT * FROM Employees;

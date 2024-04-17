@@ -2,7 +2,8 @@ package com.study.controller;
 
 import com.study.domain.MyBean251;
 import com.study.domain.MyBean252;
-import com.study.domain.MyBean254;
+import com.study.domain.MyBean254Customer;
+import com.study.domain.MyBean256Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,8 +61,9 @@ public class Controller25 {
                         @ModelAttribute("products") ArrayList<MyBean252> list) throws SQLException {
 
         String sql = STR."""
-                SELECT * FROM Products WHERE ProductName LIKE '%\{search}%'
+                SELECT * FROM Products WHERE ProductName = "\{search}"
                 """;
+
 
         Statement statement = dataSource.getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
@@ -104,13 +106,12 @@ public class Controller25 {
     }
 
     @GetMapping("sub4")
-    public void method4(@ModelAttribute("customers") ArrayList<MyBean254> list,
-                        String name) throws SQLException {
-
+    public String method4(String search, Model model) throws SQLException {
         String sql = "SELECT * FROM Customers WHERE CustomerName = ?";
+        var list = new ArrayList<MyBean254Customer>();
 
         PreparedStatement preparedStatement = dataSource.getConnection().prepareStatement(sql);
-        preparedStatement.setString(1, name);
+        preparedStatement.setString(1, search);
         ResultSet resultSet = preparedStatement.executeQuery();
 
         try(resultSet; preparedStatement){
@@ -124,11 +125,74 @@ public class Controller25 {
                 String country = resultSet.getString(7);
 
 
-                MyBean254 bean = new MyBean254(id, customerName, contactName, address, city, code, country);
+                MyBean254Customer bean = new MyBean254Customer(id, customerName, contactName, address, city, code, country);
+                list.add(bean);
+            }
+        }
+        model.addAttribute("customers", list);
+        model.addAttribute("prevSearch", search);
+        return "main25/sub4Customer";
+
+    }
+
+    @GetMapping("sub5")
+    public String method5(String search, Model model) throws SQLException {
+        String sql = "SELECT * FROM Customers WHERE CustomerName LIKE ?";
+        String keyword = "%" + search + "%";
+        var list = new ArrayList<MyBean254Customer>();
+
+        PreparedStatement pstmt = dataSource.getConnection().prepareStatement(sql);
+        pstmt.setString(1, keyword);
+        ResultSet rs = pstmt.executeQuery();
+
+        try(rs; pstmt){
+            while(rs.next()){
+                Integer id = rs.getInt(1);
+                String customerName = rs.getString(2);
+                String contactName = rs.getString(3);
+                String address = rs.getString(4);
+                String city = rs.getString(5);
+                String code = rs.getString(6);
+                String country = rs.getString(7);
+
+                MyBean254Customer bean = new MyBean254Customer(id, customerName, contactName, address, city, code, country);
+                list.add(bean);
+            }
+        }
+        model.addAttribute("customers", list);
+        model.addAttribute("prevSearch", search);
+
+        return "main25/sub4Customer";
+    }
+
+    @GetMapping("sub6")
+    public void mehtod6(String search, Model model) throws SQLException {
+
+        var list = new ArrayList<MyBean256Product>();
+        String sql = "SELECT * FROM Products WHERE ProductName LIKE ?";
+        String keyword = "%"+search+"%";
+
+        PreparedStatement preparedStatement = dataSource.getConnection().prepareStatement(sql);
+        preparedStatement.setString(1, keyword);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        try(resultSet; preparedStatement){
+            while(resultSet.next()){
+                Integer id = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                Integer supplierId = resultSet.getInt(3);
+                Integer categoryId = resultSet.getInt(4);
+                String unit = resultSet.getString(5);
+                Double price = resultSet.getDouble(6);
+
+                MyBean256Product bean = new MyBean256Product(id, name, supplierId, categoryId, unit, price);
+
                 list.add(bean);
             }
         }
 
+        model.addAttribute("products", list);
+        model.addAttribute("prevSearch", search);
     }
 
 }

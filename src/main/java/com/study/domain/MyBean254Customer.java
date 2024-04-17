@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class MyBean254 {
+public class MyBean254Customer {
     private Integer id;
     private String customerName;
     private String contactName;
