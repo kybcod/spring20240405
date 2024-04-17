@@ -8,13 +8,13 @@
 <h3>직원 조회</h3>
 <hr>
 <div>
-    <form>
+    <form action="/main25/sub8">
         이름
-        <input type="text" name="name" placeholder="조회할 이름을 입력하세요.">
+        <input value="${prevSearch}" type="text" name="search" placeholder="조회할 이름을 입력하세요.">
         <input type="submit" value="조회">
     </form>
 </div>
-<c:if test="${empty name}" var="emptyName">
+<c:if test="${empty employees}" var="emptyName">
     <p>조회된 이름이 없습니다.</p>
 </c:if>
 <c:if test="${not emptyName}">
@@ -40,3 +40,4 @@
 </c:if>
 </body>
 </html>
+

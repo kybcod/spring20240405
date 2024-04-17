@@ -195,4 +195,66 @@ public class Controller25 {
         model.addAttribute("prevSearch", search);
     }
 
+    // 조회 문자열이 contactName 또는 customerName에 포함된 고객들 조회
+    @GetMapping("sub7")
+    public String method7(String search, Model model) throws SQLException {
+        var list = new ArrayList<MyBean254Customer>();
+        String sql = "SELECT * FROM Customers WHERE CustomerName LIKE ? OR ContactName LIKE ?";
+        String keyword = "%" + search + "%";
+
+        PreparedStatement pstmt = dataSource.getConnection().prepareStatement(sql);
+        pstmt.setString(1, keyword);
+        pstmt.setString(2, keyword);
+        ResultSet rs = pstmt.executeQuery();
+
+        try(rs; pstmt){
+            while(rs.next()){
+                Integer id = rs.getInt(1);
+                String customerName = rs.getString(2);
+                String contactName = rs.getString(3);
+                String address = rs.getString(4);
+                String city = rs.getString(5);
+                String code = rs.getString(6);
+                String country = rs.getString(7);
+
+                MyBean254Customer bean = new MyBean254Customer(id, customerName, contactName, address, city, code, country);
+                list.add(bean);
+            }
+        }
+        model.addAttribute("customers", list);
+        model.addAttribute("prevSearch", search);
+
+        return "main25/sub4Customer";
+    }
+
+    @GetMapping("sub8")
+    public void method8(String search, Model model) throws SQLException {
+
+        var list = new ArrayList<MyBean251>();
+        String sql = "SELECT * FROM Employees WHERE FirstName LIKE ? OR LastName LIKE ?";
+        String keyword = "%" + search + "%";
+
+        PreparedStatement preparedStatement = dataSource.getConnection().prepareStatement(sql);
+        preparedStatement.setString(1, keyword);
+        preparedStatement.setString(2, keyword);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        try(rs; preparedStatement){
+            while (rs.next()){
+                String id = rs.getString(1);
+                String lastName = rs.getString(2);
+                String firstName = rs.getString(3);
+                String birthDate = rs.getString(4);
+                String photo = rs.getString(5);
+                String notes = rs.getString(6);
+
+                MyBean251 bean = new MyBean251(id, lastName, firstName, birthDate, photo, notes);
+
+                list.add(bean);
+            }
+        }
+        model.addAttribute("employees", list);
+        model.addAttribute("prevSearch", search);
+
+    }
 }

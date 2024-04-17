@@ -27,7 +27,7 @@
 <hr>
 
 <c:if test="${empty products}" var="emptyProduct">
-    <p style="background-color: beige; padding: 20px 30px; width: 45%">조회된 상품이 없습니다.</p>
+    <p style="background-color: beige; padding: 20px 20px; width: 300px">조회된 상품이 없습니다.</p>
 </c:if>
 <c:if test="${not emptyProduct}">
     <table>
