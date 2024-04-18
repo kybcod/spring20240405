@@ -9,8 +9,18 @@
 <%--action의 값이 없거나 생략되면 현재 요청 경로로 보냄--%>
 <form>
     고객명
-    <input value="${prevSearch}" name="search" type="text" placeholder="조회할 고객 이름을 입력해주세요." style="background-color: skyblue">
+    <input value="${prevSearch}" name="search" type="text" placeholder="조회할 고객 이름을 입력해주세요.">
     <input type="submit" value="조회하기">
+</form>
+<hr>
+<form>
+    국가
+    <select name="country" multiple>
+        <c:forEach items="${countryList}" var="country">
+            <option value="${country}">${country}</option>
+        </c:forEach>
+    </select>
+    <button>조회</button>
 </form>
 <hr>
 <table border="1">
@@ -29,11 +39,11 @@
     <c:forEach items="${customers}" var="customer">
         <tr>
             <td>${customer.id}</td>
-            <td>${customer.customerName}</td>
+            <td>${customer.name}</td>
             <td>${customer.contactName}</td>
             <td>${customer.address}</td>
             <td>${customer.city}</td>
-            <td>${customer.code}</td>
+            <td>${customer.postalCode}</td>
             <td>${customer.country}</td>
         </tr>
     </c:forEach>

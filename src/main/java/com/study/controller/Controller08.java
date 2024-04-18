@@ -21,7 +21,6 @@ public class Controller08 {
         model.addAttribute("name2", "value2");
 
 
-        // view로 포워딩(/WEB-INF/view/main8/sub1.jsp)
     }
 
     @RequestMapping("sub2")

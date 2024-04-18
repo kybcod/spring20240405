@@ -20,8 +20,6 @@ public class Controller17 {
         model.addAttribute("model","테슬라");
         session.setAttribute("model","제네시스");
 
-        // /WEB-INF/view/main17/sub1.jsp
-
     }
 
     @RequestMapping("sub2")

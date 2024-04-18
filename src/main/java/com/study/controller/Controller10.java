@@ -25,7 +25,7 @@ public class Controller10 {
         data.put("key 삼", List.of("spring", "node"));
         model.addAttribute("myList", data);
 
-        //view로 포워딩 (/WEB-INF/view/main10/sub1.jsp)
+        //view로 포워딩 (/WEB-INF/view/main10/sub일.jsp)
     }
 
     @RequestMapping("sub2")

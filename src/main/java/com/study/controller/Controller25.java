@@ -1,9 +1,6 @@
 package com.study.controller;
 
-import com.study.domain.MyBean251;
-import com.study.domain.MyBean252;
-import com.study.domain.MyBean254Customer;
-import com.study.domain.MyBean256Product;
+import com.study.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -228,11 +225,12 @@ public class Controller25 {
     }
 
     @GetMapping("sub8")
-    public void method8(String search, Model model) throws SQLException {
+    public String method8(String name, Model model) throws SQLException {
 
-        var list = new ArrayList<MyBean251>();
-        String sql = "SELECT * FROM Employees WHERE FirstName LIKE ? OR LastName LIKE ?";
-        String keyword = "%" + search + "%";
+        ArrayList<MyBean258Employee> list = new ArrayList<>();
+        String sql = "SELECT * FROM Employees " +
+                "WHERE FirstName LIKE ? OR LastName LIKE ?";
+        String keyword = "%" + name + "%";
 
         PreparedStatement preparedStatement = dataSource.getConnection().prepareStatement(sql);
         preparedStatement.setString(1, keyword);
@@ -248,13 +246,14 @@ public class Controller25 {
                 String photo = rs.getString(5);
                 String notes = rs.getString(6);
 
-                MyBean251 bean = new MyBean251(id, lastName, firstName, birthDate, photo, notes);
+                MyBean258Employee bean = new MyBean258Employee(id, lastName, firstName, birthDate, photo, notes);
 
                 list.add(bean);
             }
         }
         model.addAttribute("employees", list);
-        model.addAttribute("prevSearch", search);
+        model.addAttribute("prevSearch", name);
 
+        return "/main25/sub8Employees";
     }
 }

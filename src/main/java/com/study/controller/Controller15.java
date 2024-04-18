@@ -9,7 +9,6 @@ public class Controller15 {
 
     @RequestMapping("sub1")
     public void sub1() {
-        // /WEB-INF/view/main15/sub1.jsp 로 포워드
     }
 
     @RequestMapping("sub2")
