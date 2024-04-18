@@ -1,12 +1,15 @@
 package com.study.controller;
 
 import com.study.domain.MyBean254Customer;
+import com.study.domain.MyBean256Product;
 import com.study.domain.MyBean261;
+import com.study.domain.MyBean263Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -109,10 +112,78 @@ public class Controller26 {
         return "main25/sub4Customer";
     }
 
+    // select name과 이름이 다르므로 @RequestParam을 작성해야 합니다.
     @GetMapping("sub3")
-    public String method3(String[] country, Model model) throws Exception {
+    public String method3(@RequestParam(value="category", required = false)
+            String[] categorySelect, Model model) throws Exception {
 
+        Connection conn = dataSource.getConnection();
 
-        return "main25/sub8ProductList";
+        // 카테고리가 선택되었을 때만 발생해야 함
+        if (categorySelect != null && categorySelect.length > 0) {
+
+            /* ? 미지정 : 배열의 길이에 따라 달라진다. ? = categorySelect */
+            String questionMarks = "";
+            for (int i = 0; i < categorySelect.length; i++) {
+                questionMarks += "?";
+                if(i != categorySelect.length-1){
+                    questionMarks += ",";
+                }
+            }
+
+            String productSql = STR."""
+                SELECT *
+                FROM Products
+                WHERE CategoryID IN (\{questionMarks})
+                ORDER BY CategoryID, Price
+                """;
+
+            /* productList에 categorySelect에 맞는 값을 넣어줌 */
+            var productList = new ArrayList<MyBean256Product>();
+            PreparedStatement pstmt = conn.prepareStatement(productSql);
+
+            // i+1번째 ?에 categorySelect 값을 넣어줘야 함
+            for (int i = 0; i < categorySelect.length; i++) {
+                pstmt.setString((i + 1), categorySelect[i]);
+            }
+
+            ResultSet resultSet = pstmt.executeQuery();
+
+            try (pstmt; resultSet) {
+                while (resultSet.next()) {
+                    MyBean256Product bean = new MyBean256Product();
+                    bean.setId(resultSet.getInt(1));
+                    bean.setName(resultSet.getString(2));
+                    bean.setSupplierId(resultSet.getInt(3));
+                    bean.setCategoryId(resultSet.getInt(4));
+                    bean.setUnit(resultSet.getString(5));
+                    bean.setPrice(resultSet.getDouble(6));
+
+                    productList.add(bean);
+                }
+                model.addAttribute("products", productList);
+                model.addAttribute("prevCategorySelect", categorySelect);
+            }
+        }
+
+        // 선택할 수 있게 제시(select)
+        // 카테고리의 아이디와 이름 categoryList에 넣기
+        String categorySql = "SELECT * FROM Categories";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(categorySql);
+        var categoryList = new ArrayList<MyBean263Category>();
+
+        try (rs; stmt; conn){
+            while (rs.next()) {
+                MyBean263Category category = new MyBean263Category();
+                category.setId(rs.getInt(1));
+                category.setName(rs.getString(2));
+
+                categoryList.add(category);
+            }
+            model.addAttribute("categoryList", categoryList);
+        }
+
+        return "main25/sub6ProductList";
     }
 }

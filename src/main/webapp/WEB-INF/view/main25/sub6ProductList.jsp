@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-<h3>상품 목록</h3>
+<h3>상품 조회</h3>
 <%--action의 값이 없거나 생략되면 현재 요청 경로로 보냄--%>
 <form>
     상품명
@@ -25,6 +25,27 @@
 <%--    <input type="submit" value="조회하기">--%>
 </form>
 <hr>
+<form>
+    카테고리 선택
+    <div>
+        <select name="category" multiple>
+
+            <c:forEach items="${categoryList}" var="category">
+                <c:set var="selected" value="false"></c:set>
+                <c:forEach items="${prevCategorySelect}" var="prevSelect">
+                    <c:if test="${category.id == prevSelect}">
+                        <c:set var="selected" value="true"></c:set>
+                    </c:if>
+                </c:forEach>
+
+                <option ${selected ? "selected" : ""} value="${category.id}">${category.name}</option>
+            </c:forEach>
+        </select>
+    </div>
+    <div>
+        <button>조회</button>
+    </div>
+</form>
 
 <c:if test="${empty products}" var="emptyProduct">
     <p style="background-color: beige; padding: 20px 20px; width: 300px">조회된 상품이 없습니다.</p>

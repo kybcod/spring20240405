@@ -163,7 +163,7 @@ public class Controller25 {
     }
 
     @GetMapping("sub6")
-    public void mehtod6(String search, Model model) throws SQLException {
+    public void method6(String search, Model model) throws SQLException {
 
         var list = new ArrayList<MyBean256Product>();
         String sql = "SELECT * FROM Products WHERE ProductName LIKE ?";
@@ -188,7 +188,7 @@ public class Controller25 {
             }
         }
 
-        model.addAttribute("products", list);
+        model.addAttribute("productList", list);
         model.addAttribute("prevSearch", search);
     }
 

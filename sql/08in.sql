@@ -11,3 +11,6 @@ SELECT * FROM Customers WHERE Country IN ('germany', 'uk','sweden','france');
 
 SELECT * FROM Products WHERE CategoryID IN (2,3,6);
 SELECT * FROM Suppliers WHERE Country IN ('japan','brazil','italy');
+
+SELECT * FROM Products;
+SELECT * FROM Categories;
