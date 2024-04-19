@@ -5,5 +5,7 @@ SELECT CustomerName, ContactName, Address, City, PostalCode, Country FROM Custom
 
 SELECT COUNT(*) FROM Customers;
 
-# n은 레코드 수
-# (n-1) / 10 + 1
+INSERT INTO Employees (LastName, FirstName, BirthDate, Photo, Notes)
+SELECT LastName, FirstName, BirthDate, Photo, Notes FROM Employees;
+
+SELECT COUNT(*) FROM Employees;
