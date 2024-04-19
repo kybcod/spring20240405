@@ -14,6 +14,7 @@
     </style>
 </head>
 <body>
+<h3>고객 정보</h3>
 <hr>
 <table>
     <thead>
@@ -41,5 +42,17 @@
     </c:forEach>
     </tbody>
 </table>
+<div>
+    <c:forEach begin="1" end="${lastPageNumber}" var="pageNumber">
+        <c:url var="link" value="/main27/sub1">
+            <c:param name="page" value="${pageNumber}"/>
+        </c:url>
+        <span>
+            <a href="${link}">${pageNumber}</a>
+<%-- 파라미터 하나일 때, url 태그 없이
+            <a href="/main27/sub1?page=${pageNumber}" />--%>
+        </span>
+    </c:forEach>
+</div>
 </body>
 </html>
