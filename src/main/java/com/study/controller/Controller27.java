@@ -58,6 +58,28 @@ public class Controller27 {
         int lastPageNumber = (total-1)/10+1;
         model.addAttribute("lastPageNumber", lastPageNumber);
 
+        // 페이지 링크의 begin, end 산출
+        int endPageNumber = (((page -1)/10)+1)*10; //현재 페이지는 requestParameter로 받음(page)
+        int beginPageNumber = endPageNumber- 9;
+
+        // endPageNumber가 최종 페이지를 넘을 순 없다.
+        endPageNumber = Math.min(endPageNumber, lastPageNumber);
+
+        model.addAttribute("endPageNumber", endPageNumber);
+        model.addAttribute("beginPageNumber", beginPageNumber);
+
+        // nextPageNumber : 다음 버튼 클릭 시 이동해야야 하는 페이지
+        int nextPageNumber = beginPageNumber + 10;
+        if (nextPageNumber <= lastPageNumber) {
+            model.addAttribute("nextPageNumber", nextPageNumber);
+        }
+
+        // 이전 버튼 클릭 시 이동해야 하는 페이지 prevPageNumber 산출
+        int prevPageNumber = beginPageNumber - 10;
+        if (prevPageNumber >= 1) {
+            model.addAttribute("prevPageNumber", prevPageNumber);
+        }
+
         // 고객 레코드 조회
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setInt(1,offset);
