@@ -11,6 +11,9 @@
         table {
             width: 100%;
         }
+        .active{
+            background-color: burlywood;
+        }
     </style>
 </head>
 <body>
@@ -43,6 +46,15 @@
     </tbody>
 </table>
 <div>
+    <c:if test="${currentPage != 1}">
+        <c:url var="link" value="/main27/sub1">
+            <c:param name="page" value="1"/>
+        </c:url>
+        <span>
+            <a href="${link}">맨앞</a>
+        </span>
+    </c:if>
+
     <c:if test="${not empty prevPageNumber}">
         <c:url var="link" value="/main27/sub1">
             <c:param name="page" value="${prevPageNumber}"/>
@@ -57,7 +69,7 @@
             <c:param name="page" value="${pageNumber}"/>
         </c:url>
         <span>
-            <a href="${link}">${pageNumber}</a>
+            <a class="${currentPage eq pageNumber ? 'active' : ''}" href="${link}">${pageNumber}</a>
 <%-- 파라미터 하나일 때, url 태그 없이
             <a href="/main27/sub1?page=${pageNumber}" />--%>
         </span>
@@ -69,6 +81,15 @@
         </c:url>
         <span>
             <a href="${link}">다음</a>
+        </span>
+    </c:if>
+
+    <c:if test="${currentPage != lastPageNumber}">
+        <c:url var="link" value="/main27/sub1">
+            <c:param name="page" value="${lastPageNumber}"/>
+        </c:url>
+        <span>
+            <a href="${link}">맨뒤</a>
         </span>
     </c:if>
 </div>

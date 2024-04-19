@@ -80,6 +80,10 @@ public class Controller27 {
             model.addAttribute("prevPageNumber", prevPageNumber);
         }
 
+        // 현재 페이지
+        model.addAttribute("currentPage", page);
+
+
         // 고객 레코드 조회
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setInt(1,offset);
