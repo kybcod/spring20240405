@@ -81,12 +81,13 @@ public class Controller28 {
             if (rowCount == 1) {
                 rttr.addFlashAttribute("message", "새 직원의 정보가 등록되었습니다.");
             }
+            else{
+                rttr.addFlashAttribute("message","다시 한번 확인부탁드립니다.");
+            }
         }
 
-        return "redirect:/main28/sub2";
+        return "redirect:/main28/sub2"; //마지막 요청 GET 방식으로 전환
     }
-
-
 
 
 }

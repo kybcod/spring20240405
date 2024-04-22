@@ -17,7 +17,7 @@
         FirstName <input type="text" name="firstName">
     </div>
     <div>
-        BirthDate <input type="date" name="birthDate">
+        BirthDate <input type="date" name="birthDate" value="1960-01-01">
     </div>
     <div>
         Photo <input type="file" name="photo">
