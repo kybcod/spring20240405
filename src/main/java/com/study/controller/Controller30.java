@@ -92,7 +92,72 @@ public class Controller30 {
         return "redirect:/main30/sub1";
     }
 
+    @GetMapping("sub2")
+    public void method3(Integer id, Model model) throws SQLException {
+        if (id !=  null){
 
+            String sql = """
+                    SELECT *
+                    FROM Employees
+                    WHERE EmployeeId = ?
+                    """;
+            Connection conn = dataSource.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,id);
+            ResultSet rs = pstmt.executeQuery();
 
+            try (rs;pstmt;conn){
+
+                if(rs.next()){
+                    MyBean258Employee bean = new MyBean258Employee();
+                    bean.setId(rs.getString(1));
+                    bean.setLastName(rs.getString(2));
+                    bean.setFirstName(rs.getString(3));
+                    bean.setBirthDate(rs.getString(4));
+                    bean.setPhoto(rs.getString(5));
+                    bean.setNotes(rs.getString(6));
+
+                    model.addAttribute("employee", bean);
+
+                }
+            }
+        }
+    }
+
+    @PostMapping("sub2/update")
+    public String method4(MyBean258Employee employee, RedirectAttributes rttr) throws SQLException {
+        String sql = """
+                UPDATE Employees
+                SET 
+                    FirstName = ?,
+                    LastName = ?,
+                    Photo = ?,
+                    BirthDate = ?,
+                    Notes = ?
+                WHERE 
+                    EmployeeId = ?
+                """;
+
+        Connection con = dataSource.getConnection();
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        try (pstmt;con){
+            pstmt.setString(1,employee.getFirstName());
+            pstmt.setString(2,employee.getLastName());
+            pstmt.setString(3,employee.getPhoto());
+            pstmt.setString(4,employee.getBirthDate());
+            pstmt.setString(5,employee.getNotes());
+            pstmt.setString(6, employee.getId());
+
+            int rowCount = pstmt.executeUpdate();
+            if (rowCount > 0) {
+                rttr.addFlashAttribute("message", employee.getId() + "번 직원 정보가 수정되었습니다.");
+            } else {
+                rttr.addFlashAttribute("message", "수정되지 않았습니다.");
+
+            }
+        }
+        rttr.addAttribute("id", employee.getId());
+        return "redirect:/main30/sub2";
+    }
 
 }
