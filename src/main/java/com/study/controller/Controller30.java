@@ -2,6 +2,7 @@ package com.study.controller;
 
 import com.study.domain.MyBean254Customer;
 import com.study.domain.MyBean258Employee;
+import com.study.mapper.Mapper01;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,33 +24,19 @@ public class Controller30 {
     @Autowired
     private DataSource dataSource;
 
+    // 직접 만든 객체(dependency)
+//    private Mapper01 mapper = new Mapper01();
+
+    // Inversion Of Control (IOC)
+    // Dependency Injection (DI)
+    @Autowired
+    private Mapper01 mapper;
+
+
     @GetMapping("sub1")
     public void method1(Integer id, Model model) throws SQLException {
-        // 고객 번호를 받은 후 조회한 다음에 지울 예정
-        if (id !=  null){
-            String sql = """
-                    SELECT * FROM Customers WHERE CustomerID = ?
-                    """;
-
-            Connection conn = dataSource.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1,id); //첫번째 물음표에 id 넣기
-            ResultSet rs = pstmt.executeQuery();
-            try (rs;pstmt;conn){
-                if (rs.next()) {
-                    MyBean254Customer bean = new MyBean254Customer();
-                    bean.setId(rs.getInt(1));
-                    bean.setName(rs.getString(2));
-                    bean.setContactName(rs.getString(3));
-                    bean.setAddress(rs.getString(4));
-                    bean.setCity(rs.getString(5));
-                    bean.setPostalCode(rs.getString(6));
-                    bean.setCountry(rs.getString(7));
-
-                    model.addAttribute("customer", bean);
-                }
-            }
-        }
+        MyBean254Customer c = mapper.getCustomerById(id);
+        model.addAttribute("customer", c);
     }
 
     @PostMapping("sub1/update")
