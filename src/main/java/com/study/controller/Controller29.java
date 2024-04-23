@@ -85,7 +85,7 @@ public class Controller29 {
             try (rs;preparedStatement;conn) {
                 if (rs.next()){
                     MyBean258Employee employee = new MyBean258Employee();
-                    employee.setId(rs.getString(1));
+                    employee.setId(rs.getInt(1));
                     employee.setLastName(rs.getString(2));
                     employee.setFirstName(rs.getString(3));
                     employee.setBirthDate(rs.getString(4));

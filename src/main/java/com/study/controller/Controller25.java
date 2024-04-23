@@ -37,7 +37,7 @@ public class Controller25 {
 
         try (rs; stmt; conn) {
             while (rs.next()) {
-                String id = rs.getString(1);
+                Integer id = rs.getInt(1);
                 String lastName = rs.getString(2);
                 String firstName = rs.getString(3);
                 String birthDate = rs.getString(4);
@@ -239,7 +239,7 @@ public class Controller25 {
 
         try(rs; preparedStatement){
             while (rs.next()){
-                String id = rs.getString(1);
+                Integer id = rs.getInt(1);
                 String lastName = rs.getString(2);
                 String firstName = rs.getString(3);
                 String birthDate = rs.getString(4);

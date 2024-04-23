@@ -13,6 +13,6 @@ public class MyBean254Customer {
     private String contactName;
     private String address;
     private String city;
-    private String country;
     private String postalCode;
+    private String country;
 }

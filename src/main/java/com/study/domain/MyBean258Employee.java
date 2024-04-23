@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MyBean258Employee {
-    private String id;
+    private int id;
     private String lastName;
     private String firstName;
     private String birthDate;

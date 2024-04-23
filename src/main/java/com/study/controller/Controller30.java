@@ -97,7 +97,7 @@ public class Controller30 {
 
                 if(rs.next()){
                     MyBean258Employee bean = new MyBean258Employee();
-                    bean.setId(rs.getString(1));
+                    bean.setId(rs.getInt(1));
                     bean.setLastName(rs.getString(2));
                     bean.setFirstName(rs.getString(3));
                     bean.setBirthDate(rs.getString(4));
@@ -133,7 +133,7 @@ public class Controller30 {
             pstmt.setString(3,employee.getPhoto());
             pstmt.setString(4,employee.getBirthDate());
             pstmt.setString(5,employee.getNotes());
-            pstmt.setString(6, employee.getId());
+            pstmt.setInt(6, employee.getId());
 
             int rowCount = pstmt.executeUpdate();
             if (rowCount > 0) {
