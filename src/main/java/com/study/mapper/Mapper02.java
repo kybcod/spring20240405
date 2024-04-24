@@ -55,7 +55,7 @@ public interface Mapper02 {
     @Select("""
             SELECT CustomerID id,
                    CustomerName name,
-                   ContactName, Address, City, Country, PostalCode
+                   ContactName, Address, City, PostalCode, Country
             FROM Customers WHERE CustomerId = #{id}
             """)
     MyBean254Customer selectOneCustomer4(Integer id);

@@ -34,10 +34,12 @@
             도시 <input type="text" name="city" value="${customer.city}">
         </div>
         <div>
-            우편번호 <input type="text" name="postalCode" value="${customer.postalCode}">
+            우편번호
+            <input type="text" value="${customer.postalCode}" name="postalCode">
         </div>
         <div>
-            국적 <input type="text" name="country" value="${customer.country}">
+            국가
+            <input type="text" value="${customer.country}" name="country">
         </div>
         <div style="display: none">
             <input type="text" name="id" value="${customer.id}">
