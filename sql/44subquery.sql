@@ -52,18 +52,18 @@ FROM(SELECT CustomerID, CustomerName, City, Country
 # 상관서브쿼리(속도느림), JOIN으로 해결할 수 있는지 고민
 # 외부커리의 값이내부 쿼리에 사용될 때
 
-# 각 고객의 주문 횟수
-SELECT CustomerName, Country,
-       (SELECT COUNT(OrderID)
-        FROM Orders
-        WHERE Customers.CustomerID = Orders.CustomerID)
-FROM Customers;
+    # 각 고객의 주문 횟수
+    SELECT CustomerName, Country,
+           (SELECT COUNT(OrderID)
+            FROM Orders
+            WHERE Customers.CustomerID = Orders.CustomerID)
+    FROM Customers;
 
-# JOIN
-SELECT CustomerName, Country, COUNT(OrderID)
-FROM Customers c LEFT JOIN Orders o
-    ON c.CustomerID = o.CustomerID
-GROUP BY c.CustomerID;
+    # JOIN
+    SELECT CustomerName, Country, COUNT(OrderID)
+    FROM Customers c LEFT JOIN Orders o
+        ON c.CustomerID = o.CustomerID
+    GROUP BY c.CustomerID;
 
 # 상품별 총 매출 금액
 SELECT p.ProductID, (SELECT SUM(od.Quantity)
