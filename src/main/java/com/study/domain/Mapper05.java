@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface Mapper05 {
@@ -44,5 +45,5 @@ public interface Mapper05 {
             GROUP BY c.CustomerID
             ORDER BY income desc
             """)
-    List<CustomerIncome> selectCustomerIncomeList(String from, String to);
+    List<Map<String, Object>> selectCustomerIncomeList(String from, String to);
 }
