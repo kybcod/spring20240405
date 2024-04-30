@@ -59,7 +59,7 @@
         <tbody>
         <c:forEach items="${incomeList}" var="incomeL">
             <tr>
-                <td>${incomeL.CustomerName}</td>
+                <td>${incomeLustomerName}</td>
                 <td>${incomeL.income}</td>
             </tr>
         </c:forEach>

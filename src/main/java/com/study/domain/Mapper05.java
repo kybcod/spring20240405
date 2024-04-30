@@ -30,11 +30,11 @@ public interface Mapper05 {
     List<EmployeeIncome> selectIncomeList(String from, String to);
 
 
-    @Data
-    static class CustomerIncome{
-        private String customerName;
-        private String income;
-    }
+//    @Data
+//    static class CustomerIncome{
+//        private String customerName;
+//        private String income;
+//    }
 
     @Select("""
             SELECT CustomerName, SUM(od.Quantity * p.Price) AS income 
