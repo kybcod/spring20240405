@@ -28,4 +28,9 @@ public class Controller41 {
         System.out.println("map = " + map);
     }
 
+    @PostMapping("sub4")
+    public void sub4(@RequestBody Map<String, Object> map){
+        System.out.println("map = " + map);
+    }
+
 }
