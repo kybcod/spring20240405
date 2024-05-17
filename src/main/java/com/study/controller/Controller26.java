@@ -66,11 +66,12 @@ public class Controller26 {
                     questionMarks = questionMarks + ",";
                 }
             }
-            String customerSql = STR."""
-                SELECT *
-                FROM Customers
-                WHERE Country IN (\{questionMarks})
-                """;
+            String customerSql = "";
+//                    STR."""
+//                SELECT *
+//                FROM Customers
+//                WHERE Country IN (\{questionMarks})
+//                """;
 
             var customerList = new ArrayList<MyBean254Customer>();
             PreparedStatement pstmt = conn.prepareStatement(customerSql);
@@ -131,12 +132,13 @@ public class Controller26 {
                 }
             }
 
-            String productSql = STR."""
-                SELECT *
-                FROM Products
-                WHERE CategoryID IN (\{questionMarks})
-                ORDER BY CategoryID, Price
-                """;
+            String productSql = "";
+//                    STR."""
+//                SELECT *
+//                FROM Products
+//                WHERE CategoryID IN (\{questionMarks})
+//                ORDER BY CategoryID, Price
+//                """;
 
             /* productList에 categorySelect에 맞는 값을 넣어줌 */
             var productList = new ArrayList<MyBean256Product>();
