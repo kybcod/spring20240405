@@ -9,7 +9,7 @@ import java.util.Map;
 public class MyBean412 {
     private String name;
     private Double height;
-    private Map<String, Object> info;
+    private MyBean411 info;
     private List<String> foods;
     private boolean married;
 }
