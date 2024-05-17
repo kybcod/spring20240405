@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -38,7 +37,7 @@ public class SecurityConfiguration {
         http.csrf(csrf -> csrf.disable());
         http.formLogin(form -> form.loginPage("/login"));
 
-        // resource sever
+        // resource server
         http.oauth2ResourceServer(configurer -> configurer.jwt(Customizer.withDefaults()));
         return http.build();
     }

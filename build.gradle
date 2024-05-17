@@ -40,7 +40,6 @@ dependencies {
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
     implementation 'org.springframework.security:spring-security-taglibs'
-
 }
 
 tasks.named('test') {
