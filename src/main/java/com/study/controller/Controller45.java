@@ -7,11 +7,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 
-@Controller
 @RequestMapping("/api/main45")
+@RestController // Controller + ResponseBody
 public class Controller45 {
     @PostMapping("sub1")
-    @ResponseBody
     public String sub1(@RequestParam("name") String name,
                        @RequestParam("file") MultipartFile file) throws IOException {
 
@@ -22,7 +21,6 @@ public class Controller45 {
     }
 
     @PostMapping("sub2")
-    @ResponseBody
     public String sub2(String name, @RequestParam("file[]") MultipartFile[] file) throws IOException{
         System.out.println("name = " + name);
         if (file == null || file.length > 0){
